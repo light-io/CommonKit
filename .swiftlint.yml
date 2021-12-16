@@ -1,13 +1,5 @@
 included: # paths to include during linting. `--path` is ignored if present.
-  - Lab/Lab/Sources
-  - ./Packages
-  - ../SharedPackages
-
-excluded:
-  - ./Packages/*/.swiftpm
-  - ./Packages/*/DerivedData
-  - ./SharedPackages/*/.swiftpm
-  - ../SharedPackages/*/DerivedData
+  - ./Sources
 
 disabled_rules:
   - trailing_comma

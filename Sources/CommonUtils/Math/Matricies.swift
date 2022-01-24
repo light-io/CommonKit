@@ -77,4 +77,58 @@ public extension float4x4 {
       [0, 0, 0, 1]
     )
   }
+
+  init(projectionFov fov: Float, near: Float, far: Float, aspect: Float, lhs: Bool = true) {
+    let y = 1 / tan(fov * 0.5)
+    let x = y / aspect
+    let z = lhs ? far / (far - near) : far / (near - far)
+    let X = Float4(x, 0, 0, 0)
+    let Y = Float4(0, y, 0, 0)
+    let Z = lhs ? Float4(0, 0, z, 1) : Float4(0, 0, z, -1)
+    let W = lhs ? Float4(0, 0, z * -near, 0) : Float4(0, 0, z * near, 0)
+    self.init()
+    columns = (X, Y, Z, W)
+  }
+
+  init(rotation angle: Float3) {
+    let rotationX = float4x4(rotationX: angle.x)
+    let rotationY = float4x4(rotationY: angle.y)
+    let rotationZ = float4x4(rotationZ: angle.z)
+    self = rotationX * rotationY * rotationZ
+  }
+
+  init(rotationYXZ angle: Float3) {
+    let rotationX = float4x4(rotationX: angle.x)
+    let rotationY = float4x4(rotationY: angle.y)
+    let rotationZ = float4x4(rotationZ: angle.z)
+    self = rotationY * rotationX * rotationZ
+  }
+
+  // MARK:- Upper left 3x3
+  var upperLeft: float3x3 {
+    let x = columns.0.xyz
+    let y = columns.1.xyz
+    let z = columns.2.xyz
+    return float3x3(columns: (x, y, z))
+  }
+}
+
+// MARK:- float4
+public extension Float4 {
+  var xyz: Float3 {
+    get {
+      Float3(x, y, z)
+    }
+    set {
+      x = newValue.x
+      y = newValue.y
+      z = newValue.z
+    }
+  }
+
+  // convert from double4
+  init(_ d: SIMD4<Double>) {
+    self.init()
+    self = [Float(d.x), Float(d.y), Float(d.z), Float(d.w)]
+  }
 }

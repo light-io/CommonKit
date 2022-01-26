@@ -4,15 +4,17 @@
 import PackageDescription
 
 let package = Package(
-  name: "CommonUtils",
+  name: "CommonKit",
   platforms: [.iOS(.v15), .macOS(.v12)],
   products: [
     .library(name: "CommonUtils", targets: ["CommonUtils"]),
-    .library(name: "CommonUIUtils", targets: ["CommonUIUtils"])
+    .library(name: "CommonUIUtils", targets: ["CommonUIUtils"]),
+    .library(name: "RenderingKit", targets: ["RenderingKit"])
   ],
   targets: [
     .target(name: "CommonUtils"),
-    .target(name: "CommonUIUtils")
+    .target(name: "CommonUIUtils"),
+    .target(name: "RenderingKit")
   ],
   swiftLanguageVersions: [.v5]
 )

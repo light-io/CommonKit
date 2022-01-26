@@ -14,7 +14,7 @@ let package = Package(
   targets: [
     .target(name: "CommonUtils"),
     .target(name: "CommonUIUtils"),
-    .target(name: "RenderingKit")
+    .target(name: "RenderingKit", dependencies: ["CommonUtils"])
   ],
   swiftLanguageVersions: [.v5]
 )

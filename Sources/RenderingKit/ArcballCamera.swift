@@ -9,7 +9,7 @@ import CommonUtils
 ///
 /// Arcball camera/orbit camera is a simple type of camera that rotates around a center point.
 ///
-final class ArcballCamera: Camera {
+public final class ArcballCamera: Camera {
   public var minDistance: Float = 0.5
   public var maxDistance: Float = 10
   public var target: Float3 = [0, 0, 0] {

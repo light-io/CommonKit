@@ -8,12 +8,12 @@ let package = Package(
   platforms: [.iOS(.v15), .macOS(.v12)],
   products: [
     .library(name: "CommonUtils", targets: ["CommonUtils"]),
-    .library(name: "CommonUIUtils", targets: ["CommonUIUtils"]),
+    .library(name: "CommonUI", targets: ["CommonUI"]),
     .library(name: "RenderingKit", targets: ["RenderingKit"])
   ],
   targets: [
     .target(name: "CommonUtils"),
-    .target(name: "CommonUIUtils"),
+    .target(name: "CommonUI"),
     .target(name: "RenderingKit", dependencies: ["CommonUtils"])
   ],
   swiftLanguageVersions: [.v5]
